@@ -8,13 +8,14 @@
 import sys
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QFont
-from listAdd.yinliu_addList import AddItemList
-from listAdd.yinliu_editList import EditItemList
-from signal_update.signalsUpdate import global_signals
 from PyQt6 import QtCore, QtGui, QtWidgets
 from PyQt6.QtWidgets import QWidget, QApplication, QTableWidgetItem, QPushButton, QCheckBox, QMessageBox
 
+from listAdd.yinliu_addList import AddItemList
+from listAdd.yinliu_editList import EditItemList
+from signal_update.signalsUpdate import global_signals
 from dao import listDao
+from listView.yinliu_viewList import ViewList
 
 
 class main_widget(QWidget):
@@ -151,6 +152,10 @@ class main_widget(QWidget):
         self.edit_list_window = EditItemList(row_id)
         self.edit_list_window.show()
 
+    def open_checkList_window(self, row_id):
+        self.check_list_window = ViewList(row_id)
+        self.check_list_window.show()
+
     # 新增下拉框选择显示数据量
     def pageComboBoxChanged(self, index):
         """
@@ -280,14 +285,18 @@ class main_widget(QWidget):
             self.edit_button = QPushButton("编辑")
             self.materialTable.setCellWidget(row+1, columns-2, self.edit_button)  # 将编辑按钮添加到表格的最后一列
 
-            # 添加编辑按钮点击事件
+            # 获取当前数据的id
             row_id = self.fake_data[(self.now_page - 1) * self.rows_per_page + row][0]
             # print(row_id)
             # print(row_id)
+
+            # 添加编辑按钮点击事件
             self.edit_button.clicked.connect(lambda _, id=row_id: self.open_editList_window(id))
 
-            check_button = QPushButton("查看")  # 创建查看按钮
-            self.materialTable.setCellWidget(row+1, columns-1, check_button)  # 将查看按钮添加到表格的最后一列
+            self.check_button = QPushButton("查看")  # 创建查看按钮
+            self.materialTable.setCellWidget(row+1, columns-1, self.check_button)  # 将查看按钮添加到表格的最后一列
+            # 添加查看按钮点击事件
+            self.check_button.clicked.connect(lambda _, id=row_id: self.open_checkList_window(id))
         
         self.materialTable.setColumnWidth(0, 30)  # Adjust the width of the "Edit" button column
         self.materialTable.setColumnWidth(1, 40)  # Adjust the width of the "Save" button column

@@ -14,10 +14,11 @@ from dao import viewDao
 
 class ViewList(QWidget):
 
-    def __init__(self):
+    def __init__(self, row_id):
         super(ViewList, self).__init__()
         self.setWindowFlag(QtCore.Qt.WindowType.MSWindowsFixedSizeDialogHint)
         self.setupUi(self)
+        self.row_id = row_id
         self.total_pages = 1  # 初始化总页数为1
         self.rows_per_page = 10
         self.now_page = 1
@@ -344,7 +345,7 @@ class ViewList(QWidget):
         self.clearTableExceptHeader()
         s_Name = self.searchLineEdit.text()
 
-        result = viewDao.list(s_Name)
+        result = viewDao.list(s_Name, self.row_id)
 
         if result:
             self.fake_data = result

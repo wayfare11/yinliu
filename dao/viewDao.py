@@ -2,7 +2,7 @@ from entity.ViewModel import ViewType
 from connectSql import dbUtil
 
 
-def list(s_Name: str):
+def list(s_Name: str, id):
     con = None
     try:
         con = dbUtil.getCon()
@@ -11,6 +11,10 @@ def list(s_Name: str):
 
         if s_Name.strip() != '':
             sql += " and Name like '%" + s_Name + "%' "
+
+        # 添加额外的约束条件
+        sql += " and id_list = " + str(id)
+
         cursor.execute(sql)
         return cursor.fetchall()
     except Exception as e:
@@ -19,6 +23,7 @@ def list(s_Name: str):
         return None
     finally:
         dbUtil.closeCon(con)
+
 
 def delete(ids):
     con = None
