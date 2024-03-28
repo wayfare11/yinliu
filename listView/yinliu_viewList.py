@@ -14,11 +14,12 @@ from dao import viewDao
 
 class ViewList(QWidget):
 
-    def __init__(self, row_id):
+    def __init__(self, row_id, row_name):
         super(ViewList, self).__init__()
         self.setWindowFlag(QtCore.Qt.WindowType.MSWindowsFixedSizeDialogHint)
-        self.setupUi(self)
         self.row_id = row_id
+        self.row_name = row_name
+        self.setupUi(self)
         self.total_pages = 1  # 初始化总页数为1
         self.rows_per_page = 10
         self.now_page = 1
@@ -36,17 +37,19 @@ class ViewList(QWidget):
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.label = QtWidgets.QLabel(parent=self.horizontalLayoutWidget)
         font = QtGui.QFont()
-        font.setPointSize(12)
+        font.setPointSize(10)
         self.label.setFont(font)
         self.label.setObjectName("label")
         self.horizontalLayout.addWidget(self.label)
         self.listName = QtWidgets.QLineEdit(parent=self.horizontalLayoutWidget)
-        self.listName.setEnabled(False)
         font = QtGui.QFont()
-        font.setPointSize(12)
+        font.setPointSize(10)
         self.listName.setFont(font)
         self.listName.setObjectName("listName")
         self.horizontalLayout.addWidget(self.listName)
+        self.listName.setText(self.row_name)
+        self.listName.setReadOnly(True)
+
         self.horizontalLayoutWidget_2 = QtWidgets.QWidget(parent=Form)
         self.horizontalLayoutWidget_2.setGeometry(QtCore.QRect(30, 80, 1431, 41))
         self.horizontalLayoutWidget_2.setObjectName("horizontalLayoutWidget_2")
@@ -344,11 +347,12 @@ class ViewList(QWidget):
     def initTable(self):
         self.clearTableExceptHeader()
         s_Name = self.searchLineEdit.text()
+        # print(s_Name)
 
         result = viewDao.list(s_Name, self.row_id)
+        # print(result)
 
-        if result:
-            self.fake_data = result
+        self.fake_data = result
 
         self.total_pages = (len(self.fake_data) + self.rows_per_page - 1) // self.rows_per_page
 

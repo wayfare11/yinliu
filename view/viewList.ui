@@ -38,12 +38,15 @@
     <item>
      <widget class="QLineEdit" name="listName">
       <property name="enabled">
-       <bool>false</bool>
+       <bool>true</bool>
       </property>
       <property name="font">
        <font>
         <pointsize>12</pointsize>
        </font>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
       </property>
      </widget>
     </item>

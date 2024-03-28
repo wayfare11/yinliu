@@ -152,8 +152,8 @@ class main_widget(QWidget):
         self.edit_list_window = EditItemList(row_id)
         self.edit_list_window.show()
 
-    def open_checkList_window(self, row_id):
-        self.check_list_window = ViewList(row_id)
+    def open_checkList_window(self, row_id, row_name):
+        self.check_list_window = ViewList(row_id, row_name)
         self.check_list_window.show()
 
     # 新增下拉框选择显示数据量
@@ -287,8 +287,9 @@ class main_widget(QWidget):
 
             # 获取当前数据的id
             row_id = self.fake_data[(self.now_page - 1) * self.rows_per_page + row][0]
+            row_name = self.fake_data[(self.now_page - 1) * self.rows_per_page + row][1]
             # print(row_id)
-            # print(row_id)
+            # print(row_name)
 
             # 添加编辑按钮点击事件
             self.edit_button.clicked.connect(lambda _, id=row_id: self.open_editList_window(id))
@@ -296,7 +297,9 @@ class main_widget(QWidget):
             self.check_button = QPushButton("查看")  # 创建查看按钮
             self.materialTable.setCellWidget(row+1, columns-1, self.check_button)  # 将查看按钮添加到表格的最后一列
             # 添加查看按钮点击事件
-            self.check_button.clicked.connect(lambda _, id=row_id: self.open_checkList_window(id))
+            # self.check_button.clicked.connect(lambda _, id=row_id: self.open_checkList_window(id))
+            self.check_button.clicked.connect(lambda _, id=row_id, name=row_name: self.open_checkList_window(id, name))
+
         
         self.materialTable.setColumnWidth(0, 30)  # Adjust the width of the "Edit" button column
         self.materialTable.setColumnWidth(1, 40)  # Adjust the width of the "Save" button column
@@ -382,8 +385,7 @@ class main_widget(QWidget):
 
         result = listDao.list(s_Name)
 
-        if result:
-            self.fake_data = result
+        self.fake_data = result
 
         self.total_pages = (len(self.fake_data) + self.rows_per_page - 1) // self.rows_per_page
 
@@ -398,6 +400,12 @@ class main_widget(QWidget):
         end_row = min(self.now_page * self.rows_per_page, len(self.fake_data))
 
         self.showPage(start_row, end_row)
+    
+    def closeEvent(self, event):
+        app = QtWidgets.QApplication.instance()
+        app.closeAllWindows()
+        event.accept()
+
 
 
 if __name__ == '__main__':
