@@ -11,6 +11,8 @@ from PyQt6.QtGui import QFont
 from PyQt6 import QtCore, QtGui, QtWidgets
 from PyQt6.QtWidgets import QApplication, QWidget, QMessageBox, QCheckBox, QTableWidgetItem, QHeaderView, QPushButton
 from dao import viewDao
+from listView.customAdd import CustomAdd
+from signal_update.signalsUpdate import global_signals
 
 class ViewList(QWidget):
 
@@ -25,6 +27,7 @@ class ViewList(QWidget):
         self.now_page = 1
         self.fake_data = None
         self.initTable()
+        global_signals.updateTable.connect(self.initTable)
 
     def setupUi(self, Form):
         Form.setObjectName("Form")
@@ -75,6 +78,13 @@ class ViewList(QWidget):
         self.addButton_3 = QtWidgets.QPushButton(parent=self.horizontalLayoutWidget_2)
         self.addButton_3.setObjectName("addButton_3")
         self.horizontalLayout_2.addWidget(self.addButton_3)
+
+        self.addButton_3.clicked.connect(lambda _, id=self.row_id: self.add(id))
+
+        self.presetButton = QtWidgets.QPushButton(parent=self.horizontalLayoutWidget_2)
+        self.presetButton.setObjectName("presetButton")
+        self.horizontalLayout_2.addWidget(self.presetButton)
+
         self.deleteButton_2 = QtWidgets.QPushButton(parent=self.horizontalLayoutWidget_2)
         self.deleteButton_2.setObjectName("deleteButton_2")
         self.horizontalLayout_2.addWidget(self.deleteButton_2)
@@ -134,6 +144,10 @@ class ViewList(QWidget):
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
+    
+    def add(self, id):
+        self.customAdd_window = CustomAdd(id)
+        self.customAdd_window.show()
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
@@ -141,7 +155,8 @@ class ViewList(QWidget):
         self.label.setText(_translate("Form", "清单名称："))
         self.searchLineEdit.setPlaceholderText(_translate("Form", "请输入要查询的名称"))
         self.searchButton.setText(_translate("Form", "查询"))
-        self.addButton_3.setText(_translate("Form", "新增"))
+        self.addButton_3.setText(_translate("Form", "自定义新增"))
+        self.presetButton.setText(_translate("Form", "预置套餐新增"))
         self.deleteButton_2.setText(_translate("Form", "批量删除"))
         self.pageSelectBox.setItemText(0, _translate("Form", "每页10条"))
         self.pageSelectBox.setItemText(1, _translate("Form", "每页20条"))

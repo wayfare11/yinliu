@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file 'c:\Users\WB-wangyu\Desktop\文档\开发文档\DrainageTube\view\viewList.ui'
+# Form implementation generated from reading ui file 'd:\WorkSpace\PYQT_dev\yinliu\view\viewList.ui'
 #
 # Created by: PyQt6 UI code generator 6.4.2
 #
@@ -26,10 +26,11 @@ class Ui_Form(object):
         self.label.setObjectName("label")
         self.horizontalLayout.addWidget(self.label)
         self.listName = QtWidgets.QLineEdit(parent=self.horizontalLayoutWidget)
-        self.listName.setEnabled(False)
+        self.listName.setEnabled(True)
         font = QtGui.QFont()
         font.setPointSize(12)
         self.listName.setFont(font)
+        self.listName.setReadOnly(True)
         self.listName.setObjectName("listName")
         self.horizontalLayout.addWidget(self.listName)
         self.horizontalLayoutWidget_2 = QtWidgets.QWidget(parent=Form)
@@ -37,6 +38,7 @@ class Ui_Form(object):
         self.horizontalLayoutWidget_2.setObjectName("horizontalLayoutWidget_2")
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_2)
         self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_2.setSpacing(6)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         self.searchLineEdit = QtWidgets.QLineEdit(parent=self.horizontalLayoutWidget_2)
         self.searchLineEdit.setObjectName("searchLineEdit")
@@ -53,6 +55,9 @@ class Ui_Form(object):
         self.addButton_3 = QtWidgets.QPushButton(parent=self.horizontalLayoutWidget_2)
         self.addButton_3.setObjectName("addButton_3")
         self.horizontalLayout_2.addWidget(self.addButton_3)
+        self.presetButton = QtWidgets.QPushButton(parent=self.horizontalLayoutWidget_2)
+        self.presetButton.setObjectName("presetButton")
+        self.horizontalLayout_2.addWidget(self.presetButton)
         self.deleteButton_2 = QtWidgets.QPushButton(parent=self.horizontalLayoutWidget_2)
         self.deleteButton_2.setObjectName("deleteButton_2")
         self.horizontalLayout_2.addWidget(self.deleteButton_2)
@@ -104,7 +109,8 @@ class Ui_Form(object):
         self.label.setText(_translate("Form", "清单名称："))
         self.searchLineEdit.setPlaceholderText(_translate("Form", "请输入要查询的名称"))
         self.searchButton.setText(_translate("Form", "查询"))
-        self.addButton_3.setText(_translate("Form", "新增"))
+        self.addButton_3.setText(_translate("Form", "自定义新增"))
+        self.presetButton.setText(_translate("Form", "预置套餐新增"))
         self.deleteButton_2.setText(_translate("Form", "批量删除"))
         self.pageSelectBox.setItemText(0, _translate("Form", "每页10条"))
         self.pageSelectBox.setItemText(1, _translate("Form", "每页20条"))
