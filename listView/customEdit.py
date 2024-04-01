@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file 'd:\WorkSpace\PYQT_dev\yinliu\view\customAdd.ui'
+# Form implementation generated from reading ui file 'd:\WorkSpace\PYQT_dev\yinliu\view\customEdit.ui'
 #
 # Created by: PyQt6 UI code generator 6.4.2
 #
@@ -8,18 +8,19 @@
 import sys
 from PyQt6 import QtCore, QtGui, QtWidgets
 from PyQt6.QtWidgets import QApplication, QWidget, QMessageBox
-from entity.ViewModel import ViewType
-from dao import viewDao
 from signal_update.signalsUpdate import global_signals
+from dao import viewDao
+from entity.ViewEditModel import ViewEditType
 
 
-class CustomAdd(QWidget):
+class CustomEdit(QWidget):
 
-    def __init__(self,list_id):
-        super(CustomAdd, self).__init__()
+    def __init__(self, row_id):
+        super(CustomEdit, self).__init__()
+        self.row_id = row_id
         self.setWindowFlag(QtCore.Qt.WindowType.MSWindowsFixedSizeDialogHint)
-        self.list_id = list_id
         self.setupUi(self)
+        self.searchData()
 
     def setupUi(self, Form):
         Form.setObjectName("Form")
@@ -181,7 +182,7 @@ class CustomAdd(QWidget):
         self.horizontalLayout.addWidget(self.certainButton)
 
         # 点击确定实现新增
-        self.certainButton.clicked.connect(self.add)
+        self.certainButton.clicked.connect(self.edit_start)
 
         self.cancelButton_2 = QtWidgets.QPushButton(parent=self.horizontalLayoutWidget)
         self.cancelButton_2.setObjectName("cancelButton_2")
@@ -196,7 +197,7 @@ class CustomAdd(QWidget):
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
-        self.label.setText(_translate("Form", "自定义新增"))
+        self.label.setText(_translate("Form", "编辑"))
         self.label_2.setText(_translate("Form", "物料编码"))
         self.Label_2.setText(_translate("Form", "图纸号"))
         self.Label.setText(_translate("Form", "名称"))
@@ -210,14 +211,38 @@ class CustomAdd(QWidget):
         self.certainButton.setText(_translate("Form", "确定"))
         self.cancelButton_2.setText(_translate("Form", "取消"))
 
-    def add(self):
+    def searchData(self):
+        data = viewDao.searchById(self.row_id)
+        data_MaterialCode = data[0][2]
+        data_DrawingCode = data[0][3]
+        data_Name = data[0][4]
+        data_ProductSize = data[0][5]
+        data_Material = data[0][6]
+        data_Color = data[0][7]
+        data_Quantity = float(data[0][8])
+        data_Unit = data[0][9]
+        data_MaterialCategory = data[0][10]
+        data_Note = data[0][11]
+
+        self.materialCodeBox.setCurrentText(data_MaterialCode)
+        self.drawingCodeBox.setCurrentText(data_DrawingCode)
+        self.NameBox_2.setCurrentText(data_Name)
+        self.SizeBox_3.setCurrentText(data_ProductSize)
+        self.materialBox_4.setCurrentText(data_Material)
+        self.ColorBox_5.setCurrentText(data_Color)
+        self.NumberBox.setValue(data_Quantity)
+        self.unitBox_6.setCurrentText(data_Unit)
+        self.categoryBox_7.setCurrentText(data_MaterialCategory)
+        self.noteEdit.setText(data_Note)
+
+    def edit_start(self):
         a_materialCode = self.materialCodeBox.currentText()
         a_drawingCode = self.drawingCodeBox.currentText()
         a_Name = self.NameBox_2.currentText()
         a_Size = self.SizeBox_3.currentText()
         a_material = self.materialBox_4.currentText()
         a_Color = self.ColorBox_5.currentText()
-        a_Number = float(self.NumberBox.text())
+        a_Number = self.NumberBox.value()
         a_unit = self.unitBox_6.currentText()
         a_category = self.categoryBox_7.currentText()
         a_note = self.noteEdit.toPlainText()
@@ -244,17 +269,19 @@ class CustomAdd(QWidget):
             if a_Number > 10000 or a_Number < 0:
                 QMessageBox.warning(None, '系统提示', '请输入0-10000之内的数')
             else:
-                viewType = ViewType(self.list_id, a_materialCode, a_drawingCode, a_Name, a_Size, a_material, a_Color, a_Number, a_unit, a_category, a_note)
-                if viewDao.add(viewType)>0:
-                    QMessageBox.information(None, '系统提示', '添加成功')
+                viewType = ViewEditType(a_materialCode, a_drawingCode, a_Name, a_Size, a_material, a_Color, a_Number, a_unit, a_category, a_note)
+                if viewDao.update(viewType, self.row_id)>0:
+                    QMessageBox.information(None, '系统提示', '修改成功')
                     self.close()
                     global_signals.updateTable.emit()
                 else:
-                    QMessageBox.warning(None, '系统提示', '添加失败')
+                    QMessageBox.warning(None, '系统提示', '修改失败')
+
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    ui = CustomAdd()
+    ui = CustomEdit(1,1)
     ui.show()
 
     sys.exit(app.exec())

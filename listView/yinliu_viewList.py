@@ -12,6 +12,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 from PyQt6.QtWidgets import QApplication, QWidget, QMessageBox, QCheckBox, QTableWidgetItem, QHeaderView, QPushButton
 from dao import viewDao
 from listView.customAdd import CustomAdd
+from listView.customEdit import CustomEdit
 from signal_update.signalsUpdate import global_signals
 
 class ViewList(QWidget):
@@ -337,9 +338,9 @@ class ViewList(QWidget):
             self.ViewShowTable.setCellWidget(row+1, columns-1, self.edit_button)  # 将编辑按钮添加到表格的最后一列
 
             # 添加编辑按钮点击事件
-            # row_id = self.fake_data[(self.now_page - 1) * self.rows_per_page + row][0]
+            row_id = self.fake_data[(self.now_page - 1) * self.rows_per_page + row][0]
             # print(row_id)
-            # self.edit_button.clicked.connect(lambda _, id=row_id: self.open_editList_window(id))
+            self.edit_button.clicked.connect(lambda _, id=row_id: self.open_editList_window(id))
 
         self.ViewShowTable.setColumnWidth(0, 30)  # Adjust the width of the "Edit" button column
         self.ViewShowTable.setColumnWidth(1, 35)  # Adjust the width of the "Save" button column
@@ -357,6 +358,10 @@ class ViewList(QWidget):
 
         for row in range(self.rows_per_page + 1):
             self.ViewShowTable.setRowHeight(row,55)
+
+    def open_editList_window(self, row_id):
+        self.edit_list_window = CustomEdit(row_id)
+        self.edit_list_window.show()
 
 
     def initTable(self):
@@ -387,7 +392,7 @@ class ViewList(QWidget):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    ui = ViewList()
+    ui = ViewList(1,"")
     ui.show()
 
     sys.exit(app.exec())
