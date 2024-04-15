@@ -1,0 +1,684 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>widget</class>
+ <widget class="QWidget" name="widget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1200</width>
+    <height>800</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>首页</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,0,6">
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>成品清单</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QGridLayout" name="gridLayout" columnstretch="1,1,0,0" columnminimumwidth="0,0,0,0">
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <item row="0" column="3">
+      <widget class="QPushButton" name="searchButton">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="baseSize">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>搜索</string>
+       </property>
+       <property name="autoRepeatInterval">
+        <number>100</number>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QComboBox" name="productCodeBox">
+       <property name="placeholderText">
+        <string>请选择产品代号</string>
+       </property>
+       <item>
+        <property name="text">
+         <string>请选择产品代号</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>DC</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>BDC</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QPushButton" name="resetButton_9">
+       <property name="text">
+        <string>重置</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <spacer name="horizontalSpacer_7">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QStackedWidget" name="stackedWidget">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="page_0"/>
+     <widget class="QWidget" name="page_1">
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <widget class="QLabel" name="label_2">
+           <property name="font">
+            <font>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>胆道引流导管</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <item>
+          <widget class="QComboBox" name="dandaoDiameterBox">
+           <property name="editable">
+            <bool>false</bool>
+           </property>
+           <item>
+            <property name="text">
+             <string>请选择直径</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>6F</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>7F</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>8F</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>10F</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>12F</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="dandaoLengthBox">
+           <item>
+            <property name="text">
+             <string>请选择有效长度</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>20cm</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>30cm</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>35cm</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>40cm</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="drainageMethodBox">
+           <item>
+            <property name="text">
+             <string>请选择引流方式</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>无内容:内外引流</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>W:外引流</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="dandaoHeadStyleBox">
+           <item>
+            <property name="text">
+             <string>请选择头端样式</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>L:可锁定猪尾型</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>N:非锁定猪尾型</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="dandaoConfigurationBox">
+           <item>
+            <property name="text">
+             <string>请选择配置代号</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>T型</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>TP型</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>SA型</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>SAP型</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>SB型</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>SBP型</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="page_2">
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_4">
+         <item>
+          <widget class="QLabel" name="label_3">
+           <property name="font">
+            <font>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>引流导管</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_5">
+         <item>
+          <widget class="QComboBox" name="yinliuDiameterBox">
+           <item>
+            <property name="text">
+             <string>请选择直径</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>5F</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>6F</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>7F</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>8F</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>10F</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>12F</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>14F</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>16F</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="yinliuLengthBox">
+           <item>
+            <property name="text">
+             <string>请选择有效长度</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>20cm</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>25cm</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>30cm</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>35cm</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>40cm</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="lockFormBox">
+           <item>
+            <property name="text">
+             <string>请选择锁定形式</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>L:可锁定型</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>N:非锁定型</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="yinliuHeadStyleBox">
+           <item>
+            <property name="text">
+             <string>请选择头端样式</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>J:J型</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>P:猪尾型</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="comboBox_16">
+           <item>
+            <property name="text">
+             <string>请选择配置代号</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>T型</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>TP型</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>SA型</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>SAP型</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>SB型</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>SBP型</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item>
+    <layout class="QGridLayout" name="gridLayout_2">
+     <item row="0" column="7">
+      <widget class="QPushButton" name="addButton">
+       <property name="text">
+        <string>新增</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="9">
+      <widget class="QPushButton" name="nextPageButton">
+       <property name="text">
+        <string>后一页</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="8">
+      <widget class="QPushButton" name="forwardButton">
+       <property name="text">
+        <string>前一页</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="7">
+      <widget class="QPushButton" name="goToButton">
+       <property name="text">
+        <string>前往</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0" colspan="10">
+      <widget class="QTableWidget" name="tableWidget"/>
+     </item>
+     <item row="0" column="2">
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="2" column="4">
+      <widget class="QComboBox" name="pageSelectBox">
+       <item>
+        <property name="text">
+         <string>每页显示10条</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>每页显示20条</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>每页显示50条</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>每页显示100条</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <spacer name="horizontalSpacer_3">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="0" column="4">
+      <spacer name="horizontalSpacer_4">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="0" column="8">
+      <widget class="QPushButton" name="deleteButton">
+       <property name="text">
+        <string>删除</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QPushButton" name="MaterialInventoryButton">
+       <property name="text">
+        <string>物料库</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="5">
+      <widget class="QLabel" name="pageShowLabel">
+       <property name="text">
+        <string>第1页/共1页</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="9">
+      <widget class="QPushButton" name="downloadButton">
+       <property name="text">
+        <string>下载</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="5">
+      <spacer name="horizontalSpacer_5">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="0" column="0">
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="0" column="6">
+      <spacer name="horizontalSpacer_6">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="2" column="6">
+      <widget class="QLineEdit" name="pageInputEdit">
+       <property name="inputMask">
+        <string/>
+       </property>
+       <property name="placeholderText">
+        <string>请输入跳转的页码</string>
+       </property>
+       <property name="clearButtonEnabled">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="3">
+      <spacer name="horizontalSpacer_8">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>productCodeBox</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>stackedWidget</receiver>
+   <slot>setCurrentIndex(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>595</x>
+     <y>81</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>554</x>
+     <y>153</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
